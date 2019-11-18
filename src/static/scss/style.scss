@@ -1,0 +1,150 @@
+
+
+html,body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.back{
+    padding: 5px 20px;
+    font-size: 25px;
+    position: absolute;
+    left: 0;
+    border: 0px;
+    background: #f9f9f9;
+}
+/* Login界面的样式调整 */
+.Loginform{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100%;
+    background-image: linear-gradient(#E8CBC0, #636FA4);
+    .el-input__inner{
+        border-radius: 20px;
+        background: rgba(255,255,255,0.2);
+        color: white;
+    }
+    .el-divider{
+        background-color:transparent
+    }
+    .el-divider__text{
+        background-color:transparent
+    }
+    .el-button{
+        width: 179px;
+    }
+    .el-icon-mobile-phone{
+        color: white;
+    }
+}
+
+/* 动画过渡  */
+.v-enter-active,
+.v-leave-active{
+    transition: all .5s;
+}
+.v-enter{
+    transform: translateX(100%);
+    opacity: 0;
+}
+.v-leave-to{
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+
+/* Index界面的样式调整 */
+.Index{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100%;
+    .el-main{
+        background: white;
+        padding: 0;
+        margin: 0;
+    }
+
+
+    .el-footer{
+        padding: 0;
+        margin: 0;
+    }
+    .Index-thead{
+        width: 100%;
+        display: flex;
+        p{
+            margin: 0
+        }
+        td{
+            padding: 10px;
+            width: 33.3%
+        }
+        .router-link-exact-active{
+            background: rgba(211, 211, 211, .5)
+        }
+    }
+}
+/* Home */
+.Home{
+    .Home-bar{
+        padding: 30px 10px;
+        color: white;
+        .link{
+            width:100%;
+            display: flex;
+            padding: 20px 0px;
+            margin:auto;
+            margin-top:10px;
+            background:red;
+            border-radius: 10px;
+        }
+        .linkp{
+            font-size: 1.5rem;
+            flex:8;
+            text-align:left;
+            padding-left:20px
+        }
+    }
+    .el-carousel{
+        margin: 0px 10px;
+        box-shadow: 0 5px 20px -15px black;
+        .el-carousel__container{
+            border: 1px solid;
+            border-radius: 10px;
+            height: 150px;
+            }
+        .el-carousel__button{
+                width: 5px;
+                height: 5px;
+                border-radius: 50%; 
+            }
+        .el-carousel__indicator--horizontal{
+            padding: 3px 2px;
+            }
+        } 
+}
+.Bank{
+    .Bank-header{
+        margin-top: 5px;
+    }
+    .Bank-shop{
+        display: flex;
+        flex-wrap: wrap;
+        
+        .Bank-shop-msg{
+            width:46%;
+            padding-left:10px;
+            padding-top: 10px;
+        }
+    }
+
+}
+// Evaluate的界面样式
+    .Evaluate-form{
+        display: flex;
+        flex-wrap: wrap;
+        .Evaluate-div{
+            padding-top: 15px;
+            width: 33.3%;
+        }
+    }
