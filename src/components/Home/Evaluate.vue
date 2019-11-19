@@ -13,18 +13,21 @@
         </el-header>
         <el-main height="100px" width="100px">
         <div class="Evaluate-form">
-            <div class="Evaluate-div" v-for="index in data" :key="index.num" @click="clickme(index.name,index.num)">
-                <el-avatar :size="80" :src="index.img"></el-avatar>
+            <div :class="['Evaluate-div',{'click':index.num === clickdata.clicknum}]" v-for="index in data" :key="index.num" @click="clickme(index.name,index.num)">
+                <el-avatar :size="60" :src="index.img"></el-avatar>
                 <p>{{index.name}}</p>
             </div>
         </div>
         </el-main>
-        <el-footer style="height:400px">
+        <el-footer style="height:15px;border-top: 1px solid #c7c7c7;">
             <div>
-                <p>姓名:{{clickdata.clickname}}</p>
-                <p>学号:{{clickdata.clicknum}}</p>
+                <p class="user-msg">姓名:{{clickdata.clickname}}</p>
+                <p class="user-msg">学号:{{clickdata.clicknum}}</p>
             </div>
             <div>
+                
+                <p>评语</p>
+                <textarea  rows='5' cols="40" placeholder="请输入您的评价" v-model="clickdata.msg"></textarea>
                 <thead style="width:100%;display:flex">
                     <td class="w33">
                         <div :class="[{'choosed':clickdata.one},'el-icon-check']" @click="clickdata.one =!clickdata.one"></div>
@@ -39,8 +42,6 @@
                         <div>活动奖励</div>
                     </td>
                 </thead>
-                <p>评语</p>
-                <textarea  rows='5' cols="60" v-model="clickdata.msg"></textarea>
                 <el-button @click="push()">提交</el-button>
             </div>
         </el-footer>
@@ -91,6 +92,54 @@ export default {
                 img:'/static/1.jpg',
                 num:'1006',
                 name:'黄进明'    
+            },{
+                img:'/static/1.jpg',
+                num:'1007',
+                name:'王花花'    
+            },{
+                img:'/static/1.jpg',
+                num:'1008',
+                name:'木哈哈'    
+            },{
+                img:'/static/1.jpg',
+                num:'1004',
+                name:'谢文健'  
+            },{
+                img:'/static/1.jpg',
+                num:'1005',
+                name:'肖清辉'    
+            },{
+                img:'/static/1.jpg',
+                num:'1006',
+                name:'黄进明'    
+            },{
+                img:'/static/1.jpg',
+                num:'1007',
+                name:'王花花'    
+            },{
+                img:'/static/1.jpg',
+                num:'1008',
+                name:'木哈哈'    
+            },{
+                img:'/static/1.jpg',
+                num:'1004',
+                name:'谢文健'  
+            },{
+                img:'/static/1.jpg',
+                num:'1005',
+                name:'肖清辉'    
+            },{
+                img:'/static/1.jpg',
+                num:'1006',
+                name:'黄进明'    
+            },{
+                img:'/static/1.jpg',
+                num:'1007',
+                name:'王花花'    
+            },{
+                img:'/static/1.jpg',
+                num:'1008',
+                name:'木哈哈'    
             },],
             clickdata:{
                 one:false,
@@ -98,7 +147,7 @@ export default {
                 three:false,
                 clickname:'',
                 clicknum:'',
-                msg:'请在这里输入评价'
+                msg:''
             }
             }
     },
@@ -131,5 +180,13 @@ export default {
     }
     .choosed{
         color: red
+    }
+    .click{
+    background:linear-gradient(#ffffff, #b5bec4);
+    }
+    .user-msg{
+        display: inline-block;
+        width: 45%;
+        margin: 0;
     }
 </style>

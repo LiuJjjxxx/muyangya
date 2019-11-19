@@ -28,7 +28,7 @@
             </div>
         </el-main>
         <el-footer>
-            <el-button type="danger"  round>购买</el-button>
+            <el-button type="danger" @click="buy"  round>购买</el-button>
         </el-footer> 
     </el-container>
 </template>
@@ -38,12 +38,21 @@ export default {
         return{
             id:this.$route.params.id,
             GoodsInfo:[],
+            buydata:[],
         }
     },
     methods:{
         goBack(){    
             this.$router.back(-1)
         },
+        buy(){
+            this.buydata ={
+                id:this.$route.params.id,
+                name:this.GoodsInfo.name,
+                user:this.$store.state.userInfo.name
+            }
+            console.log(this.buydata)
+        }
     },
     mounted() {
         var _this = this
@@ -55,7 +64,6 @@ export default {
                      _this.GoodsInfo = data[0]
                  })
          })
-
     },
 }
 </script>

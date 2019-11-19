@@ -8,7 +8,10 @@
                 <el-avatar :size="110" :src="$store.state.userInfo.image_url" style="margin-top: -20%;"></el-avatar>
             <div class="usermsg">
                 <p style="padding-top:10px">身份:{{$store.state.userInfo.identity}}</p>
-                <hr  style="background-color:#525db5a8;height: 1px;width:90%;border: none;">
+                <el-divider><i class="el-icon-mobile-phone"></i></el-divider>
+                <p v-if="$store.state.userInfo.student_fraction != null">💰金币剩余:{{$store.state.userInfo.student_fraction}}</p>
+                <p v-if="$store.state.userInfo.teacher_fraction != null">💰金币剩余:{{$store.state.userInfo.teacher_fraction}}</p>
+
             </div>
         </el-main>
 
@@ -22,18 +25,20 @@ export default {
 </script>
 <style scoped>
 .userheader{
-    background-image: linear-gradient(#9CECFB,#65C7F7,#0052D4);
+    background-image:linear-gradient(#4daae9, #2e94da);
     width:100%;
     height:180px;
     border-bottom-right-radius: 35%;
     border-bottom-left-radius: 35%;
 }
 .usermsg{
+    border: 1px solid #c3c3c3;
     border-radius: 30px;
     height: 250px;
     width: 95%;
     margin: auto;
-    box-shadow: 0 5px 20px -15px black;
+    margin-bottom: 20px;
+    box-shadow: 0px 14px 20px -15px black;
     background: white;
 }
 </style>

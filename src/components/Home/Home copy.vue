@@ -6,25 +6,29 @@
         <Lunbo :item="4"></Lunbo>
         <div class="Home-bar">
                 <router-link 
-                 v-if="$store.state.userInfo.identity != '学生'" 
-                 class="router-hover link"
+                 v-if="$store.state.userInfo.leave != '学生'" 
+                 class="router-hover link" 
+                 style="background:linear-gradient(#0e96f5,#007AD4)"
                  tag="div" to="/Index/Evaluate"
                  >
                     <p class="linkp">学生评价</p>
-                    <i class="el-icon-arrow-right " style="font-size:40px;flex:2"></i>
+                    <i class="el-icon-star-on " style="font-size:40px;flex:2"></i>
 
                 </router-link>
                 <router-link class="router-hover link" tag="div"
+                style="background:linear-gradient(#e75743,#ce1801)"
                   to="/Index/Bank">
                     <p class="linkp">梅花银行</p>
-                    <i class="el-icon-arrow-right" style="font-size:40px;flex:2"></i>
+                    <i class="el-icon-s-shop" style="font-size:40px;flex:2"></i>
                 </router-link>
 
                 <router-link class="router-hover link" tag="div"
+                style="background:linear-gradient(#B64FF9,#9511EA)" 
                   to="/Index/Event">
-                    <p class="linkp">评价排名</p>
-                    <i class="el-icon-arrow-right" style="font-size:40px;flex:2"></i>
+                    <p class="linkp">评价报表</p>
+                    <i class="el-icon-s-data" style="font-size:40px;flex:2"></i>
                 </router-link>
+
         </div>
        
     </div>

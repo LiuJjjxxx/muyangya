@@ -11,7 +11,7 @@ html,body{
     position: absolute;
     left: 0;
     border: 0px;
-    background: #f9f9f9;
+    background: transparent;
 }
 /* Login界面的样式调整 */
 .Loginform{
@@ -80,7 +80,7 @@ html,body{
             width: 33.3%
         }
         .router-link-exact-active{
-            background: rgba(211, 211, 211, .5)
+                color: blue;
         }
     }
 }
@@ -88,15 +88,16 @@ html,body{
 .Home{
     .Home-bar{
         padding: 30px 10px;
-        color: white;
+        color: black;
         .link{
             width:100%;
             display: flex;
             padding: 20px 0px;
             margin:auto;
             margin-top:10px;
-            background:red;
+            background:white;
             border-radius: 10px;
+            border-bottom: 1px solid;
         }
         .linkp{
             font-size: 1.5rem;
@@ -141,10 +142,14 @@ html,body{
 }
 // Evaluate的界面样式
     .Evaluate-form{
+        width: 100%;
+        height: 300px;
         display: flex;
         flex-wrap: wrap;
         .Evaluate-div{
+            box-shadow: 3px -3px 13px -10px black;
+            margin-top: 10px;
             padding-top: 15px;
-            width: 33.3%;
+            width: 25%;
         }
     }
