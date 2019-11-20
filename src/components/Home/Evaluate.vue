@@ -2,46 +2,41 @@
     <el-container class="Evaluate" style="height:100%">
         <el-header>
             <el-button  @click="goBack()" class="back"><i class="el-icon-back"></i></el-button>
-                <el-select v-model="clickValue" filterable placeholder="请选择" @change="bb(clickValue)" >
+                <el-select v-model="clickValue" filterable placeholder="请选择" @change="clickid(clickValue)" >
                     <el-option
                     v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
+                    :key="item.class_id"
+                    :label="item.class_name"
+                    :value="item.class_name">
                     </el-option>
             </el-select>
         </el-header>
         <el-main height="100px" width="100px">
         <div class="Evaluate-form">
-            <div :class="['Evaluate-div',{'click':index.num === clickdata.clicknum}]" v-for="index in data" :key="index.num" @click="clickme(index.name,index.num)">
-                <el-avatar :size="60" :src="index.img"></el-avatar>
+            <div :class="['Evaluate-div',{'click':index.id === clickdata.s_id}]" v-for="index in data" :key="index.id" @click="clickme(index.name,index.id)">
+                <el-avatar v-if="index.image != false" :size="50" :src="index.image"></el-avatar>
+                <el-avatar v-else :size="50" src="/static/1.jpg"></el-avatar>
                 <p>{{index.name}}</p>
             </div>
         </div>
         </el-main>
-        <el-footer style="height:15px;border-top: 1px solid #c7c7c7;">
-            <div>
+        <el-footer v-if="clickdata.s_id != ''" style="height:15px;border-top: 1px solid #c7c7c7;">
+            <div class="click_msg">
                 <p class="user-msg">姓名:{{clickdata.clickname}}</p>
-                <p class="user-msg">学号:{{clickdata.clicknum}}</p>
+                <p class="user-msg">学号:{{clickdata.s_id}}</p>
             </div>
             <div>
                 
-                <p>评语</p>
-                <textarea  rows='5' cols="40" placeholder="请输入您的评价" v-model="clickdata.msg"></textarea>
-                <thead style="width:100%;display:flex">
-                    <td class="w33">
-                        <div :class="[{'choosed':clickdata.one},'el-icon-check']" @click="clickdata.one =!clickdata.one"></div>
-                        <div>认真听讲</div>
+                <p><i class="el-icon-medal"></i>评语</p>
+                <textarea style="box-shadow: 1px 13px 12px -12px black;"  rows='5' cols="40" placeholder="请输入您的评价" v-model="clickdata.p"></textarea>
+                <div>
+                <thead class="tabs">
+                    <td :class="['w33',{ 'choosed':clickdata.l_id.indexOf(index.id)!= -1}]" v-for="index in evaluate" :key="index.id">
+                        <div :class="['el-icon-check']" @click="clickLabel(index.id)"></div>
+                        <div>{{index.name}}</div>
                         </td>
-                    <td class="w33">
-                        <div :class="[{'choosed':clickdata.two},'el-icon-check']" @click="clickdata.two =!clickdata.two"></div>
-                        <div>积极回答</div>
-                        </td>
-                    <td class="w33">
-                        <div :class="[{'choosed':clickdata.three},'el-icon-check']" @click="clickdata.three =!clickdata.three"></div>
-                        <div>活动奖励</div>
-                    </td>
                 </thead>
+                </div>
                 <el-button @click="push()">提交</el-button>
             </div>
         </el-footer>
@@ -51,103 +46,17 @@
 export default {
     data(){
         return{
-            options: [{
-                value: '101',
-                label: '一年级一班'
-                }, {
-                value: '102',
-                label: '一年级二班'
-                }, {
-                value: '103',
-                label: '一年级三班'
-                }, {
-                value: '104',
-                label: '一年级四班'
-                }, {
-                value: '105',
-                label: '一年级五班'
-            }],
-            clickValue: '',
-            data:[{
-                img:'/static/1.jpg',
-                name:'刘嘉祥',
-                num:'1001'
-            },{
-                img:'/static/1.jpg',
-                name:'李讯络',    
-                num:'1002',
-            },{
-                img:'/static/1.jpg',
-                num:'1003',
-                name:'田志强',    
-            },{
-                img:'/static/1.jpg',
-                num:'1004',
-                name:'谢文健'  
-            },{
-                img:'/static/1.jpg',
-                num:'1005',
-                name:'肖清辉'    
-            },{
-                img:'/static/1.jpg',
-                num:'1006',
-                name:'黄进明'    
-            },{
-                img:'/static/1.jpg',
-                num:'1007',
-                name:'王花花'    
-            },{
-                img:'/static/1.jpg',
-                num:'1008',
-                name:'木哈哈'    
-            },{
-                img:'/static/1.jpg',
-                num:'1004',
-                name:'谢文健'  
-            },{
-                img:'/static/1.jpg',
-                num:'1005',
-                name:'肖清辉'    
-            },{
-                img:'/static/1.jpg',
-                num:'1006',
-                name:'黄进明'    
-            },{
-                img:'/static/1.jpg',
-                num:'1007',
-                name:'王花花'    
-            },{
-                img:'/static/1.jpg',
-                num:'1008',
-                name:'木哈哈'    
-            },{
-                img:'/static/1.jpg',
-                num:'1004',
-                name:'谢文健'  
-            },{
-                img:'/static/1.jpg',
-                num:'1005',
-                name:'肖清辉'    
-            },{
-                img:'/static/1.jpg',
-                num:'1006',
-                name:'黄进明'    
-            },{
-                img:'/static/1.jpg',
-                num:'1007',
-                name:'王花花'    
-            },{
-                img:'/static/1.jpg',
-                num:'1008',
-                name:'木哈哈'    
-            },],
+            data:[],//学生列表
+            options: [],//班级列表
+            clickValue: '',//选中的班级
+            evaluate:[],
             clickdata:{
-                one:false,
-                two:false,
-                three:false,
+                token:'',
                 clickname:'',
-                clicknum:'',
-                msg:''
+                s_id:null,
+                l_id:[],
+                p:'',
+                t_id:this.$store.state.userInfo.id
             }
             }
     },
@@ -157,29 +66,103 @@ export default {
         goBack(){    
             this.$router.back(-1)
         },
-        bb(val){
-            this.data =this.$http.ClassInfo(val)
+        clickid(val){
+             var _this = this
+             this.$http.getToken().then(data=>{
+             _this.clickdata.token = data
+             _this.$http.getStudent({
+                 "token":data,
+                 "class_name":_this.clickValue,
+             }).then(data=>{_this.data = data
+             })
+         })
         },
-        clickme(name,num){
-            this.clickdata.clickname = name
-            this.clickdata.clicknum = num
+        clickme(name,id){
+            if(this.clickdata.clickname === name){
+                this.clickdata.clickname = ''
+                this.clickdata.s_id = ''
+            }
+            else{
+                this.clickdata.clickname = name
+                this.clickdata.s_id = id
+            }
+            
+            
         },
         push(){
             var _this = this
-            _this.$http.getUser().then(data=>console.log(data))
-        }
-    }
+            console.log(_this.clickdata.s_id)
+            if(_this.clickdata.s_id === null){
+                    this.$message({
+                            showClose: true,
+                            message: '请选择要评论的学生',
+                            type: 'error',
+                            center: true
+                            })
+                            }
+                else{
+                _this.$http.pushEvaluate(_this.clickdata).then(data=>{
+                    if(data.state === 'Success')
+                        this.$message({
+                            showClose: true,
+                            message: '评价成功',
+                            type: 'success',
+                            center: true
+                            })
+                    else
+                        this.$message({
+                            showClose: true,
+                            message: data.information,
+                            type: 'error',
+                            center: true
+                            })
+                })
+            }
+        },
+        clickLabel(id){
+            var local =this.clickdata.l_id.indexOf(id)
+            if(local != -1){
+                this.clickdata.l_id.splice(local,1)
+                }
+            else{
+            this.clickdata.l_id.push(id)
+                }
+        }   
+    },
+     mounted() {
+        var _this = this
+         this.$http.getToken().then(data=>{
+             _this.$http.getClass({"token":data}).then(data=>_this.options = data)
+         })
+        this.$http.getToken().then(data=>{
+             _this.$http.getEvaluateLabel(data).then(data=>{_this.evaluate = data
+             console.log(data)})
+         })
+
+    },
 }
 </script>
 <style scoped>
     .w33{
-        width: 33.3%;
+        box-shadow: 3px -3px 13px -10px black;
+        border: 1px solid black;
+        margin: 0px 5px;
+        border-radius: 20px;
+        padding: 0px 17px;
     }
     .el-icon-check{
         font-size: 50px;
     }
-    .choosed{
-        color: red
+    .tabs{
+        margin: 20px 0;
+        width: 100%;
+        overflow-x: scroll;
+        display: -webkit-box;
+        display: flex;
+        -webkit-flex-wrap:nowrap;
+        flex-wrap:nowrap;
+        -webkit-justify-content:space-between;
+        justify-content:space-between;
     }
     .click{
     background:linear-gradient(#ffffff, #b5bec4);
@@ -188,5 +171,13 @@ export default {
         display: inline-block;
         width: 45%;
         margin: 0;
+    }
+    .choosed{
+        background: linear-gradient(#9CECFB,#65C7F7,#0052D4);
+    }
+    .click_msg{
+        margin: 10px;
+        background: #3499fa;
+        border-radius: 10px;
     }
 </style>

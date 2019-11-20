@@ -17,13 +17,16 @@
                 </div>
                 <div style="text-align: left;padding-top:10px">
                     <p>商品描述</p>
-                    这是一条大白鲨，贼贵，小朋友可以养在鱼塘里面，物超所值，快来兑换把
+                    {{GoodsInfo.prize_info | info}}
                 </div>
                 <div style="color:red;text-align:left;padding-top:15px">
                     <p>商品价格 ¥{{GoodsInfo.prize_fraction}}</p>
                 </div>
                 <div style="color:red;text-align:left;padding-top:15px">
                     商品规格:{{GoodsInfo.prize_specifications}}
+                </div>
+                <div style="color:red;text-align:left;padding-top:15px"> 
+                    <p>商品剩余:{{GoodsInfo.prize_number}}</p>
                 </div>
             </div>
         </el-main>
@@ -38,7 +41,15 @@ export default {
         return{
             id:this.$route.params.id,
             GoodsInfo:[],
+            token:'',
             buydata:[],
+        }
+    },
+    filters:{
+        info:(val)=>{
+            if(val === false)
+                val = '暂无描述'
+            return val
         }
     },
     methods:{
@@ -47,16 +58,45 @@ export default {
         },
         buy(){
             this.buydata ={
-                id:this.$route.params.id,
-                name:this.GoodsInfo.name,
-                user:this.$store.state.userInfo.name
+                token:this.token,
+                p_id:this.$route.params.id,
+                s_id:this.$store.state.userInfo.id,
+                number:'1'
             }
-            console.log(this.buydata)
+            if(this.$store.state.userInfo.identity == '学生')
+                this.$http.goodsExchange(this.buydata).then(data=>{
+                    if(!data.state){
+                        this.GoodsInfo.prize_number--
+                        this.$store.state.userInfo.student_fraction -=this.GoodsInfo.prize_fraction
+                        this.$message({
+                                showClose: true,
+                                message: data,
+                                type: 'success',
+                                center: true
+                                })
+                    }
+                    else
+                        this.$message({
+                                    showClose: true,
+                                    message: '您的金币不足,只有'+this.$store.state.userInfo.student_fraction+',请努力赚取金币吧～',
+                                    type: 'error',
+                                    center: true
+                                    })
+                })
+            else
+                this.$message({
+                            showClose: true,
+                            message: '您没有权限购买',
+                            type: 'error',
+                            center: true
+                            })
+            
         }
     },
     mounted() {
         var _this = this
          this.$http.getToken().then(data=>{
+             _this.token = data
              _this.$http.getGoodsInfo({
                  "token":data,
                  "p_id":_this.id

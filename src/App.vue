@@ -15,7 +15,7 @@ export default {
 #app {
   width: 100%;
   height: 100%;
-  font-family: cursive;
+  font-family: inherit;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

@@ -44,7 +44,7 @@ export default {
 width: 95%;
 height: 10rem;
 border-radius: 20px;
-    margin-top: -30%;
+    margin-top: -28%;
 }
 .swiper-slide {
 /* Specify Slides's Size: */

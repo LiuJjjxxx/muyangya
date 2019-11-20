@@ -5,13 +5,14 @@
                 <p style="margin:0;padding-top:30px;color:white">我的</p>
                 <p style="padding-top:5px;color:white">{{$store.state.userInfo.name}}</p>
             </div>
-                <el-avatar :size="110" :src="$store.state.userInfo.image_url" style="margin-top: -20%;"></el-avatar>
+                <el-avatar v-if="$store.state.userInfo.image_url != false" :size="110" :src="$store.state.userInfo.image_url" style="margin-top: -20%;"></el-avatar>
+                <el-avatar v-else :size="110" src="/static/1.jpg" style="margin-top: -20%;"></el-avatar>
             <div class="usermsg">
                 <p style="padding-top:10px">身份:{{$store.state.userInfo.identity}}</p>
                 <el-divider><i class="el-icon-mobile-phone"></i></el-divider>
                 <p v-if="$store.state.userInfo.student_fraction != null">💰金币剩余:{{$store.state.userInfo.student_fraction}}</p>
                 <p v-if="$store.state.userInfo.teacher_fraction != null">💰金币剩余:{{$store.state.userInfo.teacher_fraction}}</p>
-
+                <p>📱手机号:{{$store.state.userInfo.mobile}}</p>
             </div>
         </el-main>
 

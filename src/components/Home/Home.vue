@@ -58,9 +58,9 @@ p{
     height: 150px;
     border-bottom-right-radius: 30%;
     border-bottom-left-radius: 30%;
-    background: linear-gradient(#4daae9, #2e94da);
+    background: linear-gradient(#369bff, #1d5f8c);
     img{
-        padding: 0px 5px;
+        padding: 5px 7px;
         width: 150px;
     }
 }

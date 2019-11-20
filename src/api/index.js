@@ -19,6 +19,22 @@ export function getGoods(post){
 export function getGoodsInfo(post){
     return Axios.post('/szpdc/get_prize_info/api/v1',post).then(data=>data.data.result)
 }
+export function getEvaluateLabel(token){
+    return Axios.post('/szpdc/models_data/api/v1',{
+        "token":token,
+        "model":"label.setting",
+        "name1":"name",
+        "name3":"label_fraction",
+        "limit":8
+    }).then(data=>data.data.result)
+}
+export function pushEvaluate(post){
+    return Axios.post('/szpdc/student_evaluation/api/v1',post).then(data=>data.data.result)
+}
+export function goodsExchange(post){
+    return Axios.post('/szpdc/prize_exchange/api/v1',post).then(data=>data.data.result)
+}
+
 
 
 
