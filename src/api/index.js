@@ -34,6 +34,27 @@ export function pushEvaluate(post){
 export function goodsExchange(post){
     return Axios.post('/szpdc/prize_exchange/api/v1',post).then(data=>data.data.result)
 }
+export function getLunbo(token){
+    return Axios.post('/szpdc/models_data/api/v1',{
+        "token": token,
+        "model": "wheel.planting",
+        "name1": "image_url"
+      }).then(data=>data.data.result)
+}
+export function getInfo(token){
+    return Axios.post('/szpdc/models_data/api/v1',{
+        "token": token,
+        "model": "consultation",
+        "name1": "consultation",
+        "name2": "image_url",
+        "name3": "name"
+      }).then(data=>data.data.result)
+}
+export function getInfomsg(post){
+    return Axios.post('/szpdc/get_consultation/api/v1',post).then(data=>data.data.result)
+}
+
+
 
 
 

@@ -20,6 +20,7 @@ import BankInfo from '@/components/Home/BankInfo'
 
 // Info的路由
 import Info from '@/components/Info/Info'
+import Infomsg from '@/components/Info/infomsg'
 // Car的路由
 import Car from '@/components/Car/Car'
 // User的路由
@@ -42,6 +43,7 @@ export default new Router({
         {path:'/Index', redirect: { name: 'Home' }},
         {path:'Home',component:Home,name:'Home'},
         {path:'Info',component:Info,name:'Info'},
+        {path:'Info/:id',component:Infomsg,name:'Infomsg'},
         {path:'Car',component:Car,name:'Car'},
         {path:'User',component:User,name:'User'},
         {path:'Evaluate',component:Evaluate,name:'Evaluate'},
