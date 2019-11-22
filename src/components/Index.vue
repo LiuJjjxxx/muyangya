@@ -8,7 +8,7 @@
         <el-footer style="border-top: 1px #96969661 solid;padding-top: 1px;">
             <thead class="Index-thead">
                     <router-link tag="td"  to="/Index/Home"><div><i class="el-icon-school"></i><p>首页</p></div></router-link>
-                    <router-link tag="td"  to="/Index/Info"><div><i class="el-icon-reading"></i><p>资讯</p></div></router-link>    
+                    <router-link tag="td"  to="/Index/Info"><div><i class="el-icon-reading"></i><p>动态</p></div></router-link>    
                     <!-- <router-link tag="td"  to="/Index/Car"><div><i class="el-icon-shopping-cart-1"></i><p>购物车</p></div></router-link>    -->
                     <router-link tag="td"  to="/Index/User"><div><i class="el-icon-user"></i><p>我的</p></div></router-link>            
             </thead>

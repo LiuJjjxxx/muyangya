@@ -2,7 +2,7 @@
     <el-container class="Evaluate" style="height:100%">
         <el-header>
             <el-button  @click="goBack()" class="back"><i class="el-icon-back"></i></el-button>
-                <el-select v-model="clickValue" filterable placeholder="请选择" @change="clickid(clickValue)" >
+                <el-select v-model="clickValue" filterable placeholder="请选择班级" @change="clickid(clickValue)" >
                     <el-option
                     v-for="item in options"
                     :key="item.class_id"
@@ -20,7 +20,7 @@
             </div>
         </div>
         </el-main>
-        <el-footer v-if="clickdata.s_id != ''" style="height:15px;border-top: 1px solid #c7c7c7;">
+        <el-footer v-if="clickdata.s_id != null" style="height:15px;border-top: 1px solid #c7c7c7;">
             <div class="click_msg">
                 <p class="user-msg">姓名:{{clickdata.clickname}}</p>
                 <p class="user-msg">学号:{{clickdata.s_id}}</p>
@@ -91,7 +91,6 @@ export default {
         },
         push(){
             var _this = this
-            console.log(_this.clickdata.s_id)
             if(_this.clickdata.s_id === null){
                     this.$message({
                             showClose: true,
@@ -136,7 +135,7 @@ export default {
          })
         this.$http.getToken().then(data=>{
              _this.$http.getEvaluateLabel(data).then(data=>{_this.evaluate = data
-             console.log(data)})
+             })
          })
 
     },

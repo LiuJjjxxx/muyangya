@@ -23,7 +23,6 @@ export default {
         var _this =this
         this.$http.getToken().then(data=>{
             _this.$http.getLunbo(data).then(data=>{
-              console.log(data)
               _this.imgInfo = data           
                 }
               )

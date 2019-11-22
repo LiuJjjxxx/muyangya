@@ -2,7 +2,7 @@
     <div>
     <el-main >
         <div class="Top-header">
-            <el-button  @click="goBack()" class="back"><i class="el-icon-back"></i></el-button>
+            <el-button  style="height: 35px;" @click="goBack()" class="back"><i class="el-icon-back"></i></el-button>
                 <el-select v-model="clickValue" filterable placeholder="班级选择" @change="clickid(clickValue)" >
                     <el-option
                     v-for="(item) in options"
